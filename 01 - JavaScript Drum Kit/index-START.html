@@ -58,6 +58,24 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
+
+let buttonDiv = document.querySelectorAll('div[data-key]')
+console.log(buttonDiv);
+buttonDiv.forEach(function (div_button) {
+  div_button.addEventListener('click', function(evt){
+    console.log(evt.target.getAttribute('data-key'))
+    let keyCode = evt.target.getAttribute('data-key');
+    if(keyCode != null){
+      let audio = document.querySelector(`audio[data-key ="${keyCode}"]`);
+      let key = document.querySelector(`.key[data-key ="${keyCode}"]`);
+      audio.currentTime = 0;
+      audio.play();
+      key.classList.add('playing');
+    }
+  })
+});
+
+  
 window.addEventListener("keydown",function(evt){
   
   let audio = document.querySelector(`audio[data-key ="${evt.keyCode}"]`);
